@@ -1,0 +1,18 @@
+# Netlify configuration
+[build]
+  base = "client/"
+  publish = "dist/"
+  command = "npm run build"
+
+# Backend functions  
+[functions]
+  directory = "functions/"
+
+# Redirect all routes to index.html for SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Environment variables will be set in the Netlify dashboard
+# VITE_API_URL = your-backend-url 

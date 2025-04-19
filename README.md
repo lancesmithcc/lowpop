@@ -11,7 +11,7 @@ LowPop is a simple app that plays a random track from the 100 least popular song
 
 1. Clone the repository:
    ```bash
-   git clone <repository_url>
+   git clone https://github.com/lancesmithcc/lowpop.git
    cd lowpop
    ```
 
@@ -62,4 +62,24 @@ LowPop is a simple app that plays a random track from the 100 least popular song
 
 ## Deployment
 
-You can deploy the backend to any Node.js hosting platform (e.g., Heroku, Vercel), and the frontend to a static host (e.g., Netlify, Vercel). Make sure to configure environment variables for Spotify credentials on your hosting provider. 
+### Backend Deployment
+
+1. Deploy the backend to any Node.js hosting platform (Heroku, Render, etc.)
+2. Set environment variables for `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, and optionally `FRONTEND_URL` for CORS.
+
+### Frontend Deployment on Netlify
+
+1. Push your code to GitHub at https://github.com/lancesmithcc/lowpop
+2. Log in to Netlify and select "Import from Git"
+3. Choose your GitHub repository
+4. Configure build settings:
+   - Base directory: `client`
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+5. Set environment variables in Netlify dashboard:
+   - `VITE_API_URL`: URL of your deployed backend (e.g., `https://your-backend.herokuapp.com`)
+6. Deploy!
+
+### Important Security Note
+
+Never commit your `.env` file or any file containing your Spotify credentials to version control. Always use environment variables for sensitive information in deployment environments. 

@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
+// Get API URL from environment or use localhost as fallback
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
 function App() {
   const [track, setTrack] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -10,16 +13,13 @@ function App() {
     async function fetchTrack() {
       setLoading(true)
       try {
-        console.log('Fetching track from API...')
-        const res = await fetch('http://localhost:3000/api/random-track')
-        console.log('API response status:', res.status)
+        const res = await fetch(`${API_URL}/api/random-track`)
         
         if (!res.ok) {
           throw new Error(`API returned status ${res.status}`)
         }
         
         const data = await res.json()
-        console.log('Track data received:', data)
         setTrack(data)
         setError(null)
       } catch (err) {
